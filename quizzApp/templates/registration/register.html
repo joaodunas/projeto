@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {%load static %}
+    <script type="text/javascript" src="{% static 'register.js' %}"></script>
+    <meta charset="UTF-8">
+    <title>register</title>
+</head>
+<body>
+<h1>Welcome to byDeiCrowd</h1>
+<h3>Register</h3>
+
+<br><label for="Username">Username:</label>
+<label><input id="Username" type="username" required></label>
+
+<br><label for="email">Email:</label>
+<label><input id="email" type="email" required></label>
+
+
+
+
+<br><label for="password">Pass:</label>
+<label><input id="password" type="password" required></label>
+
+<input type="submit" value="Register" onclick="sendToDB(document.getElementById('email').value,document.getElementById('Username').value,document.getElementById('password').value)">
+<br>
+
+<a href="{%url 'login' %}">Register</a>
+
+</body>
+</html>
