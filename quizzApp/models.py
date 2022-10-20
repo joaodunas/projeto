@@ -221,7 +221,6 @@ class Users(models.Model):
     anulado = models.BooleanField(blank=True, null=True)
     datacriacao = models.DateField(blank=True, null=True)
     avatar = models.BinaryField(blank=True, null=True)
-    password = models.CharField(max_length=512)
     nr_respostas_corretas = models.IntegerField()
 
     class Meta:

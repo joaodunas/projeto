@@ -27,5 +27,6 @@ route.register(r'quizzApp', quizzviewsets.UsersViewSet, basename= "Utilizadores"
 urlpatterns = [
     path('admin/', admin.site.urls),
     ##path('accounts/', include ("django.contrib.auth.urls")),
-    path('', include("quizzApp.urls"))
+    path('', include("quizzApp.urls")),
+    path('',include('quizzApp.api.urls'))
 ]
