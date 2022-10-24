@@ -2,30 +2,200 @@
 <html lang="en">
 <head>
     {%load static %}
-<script type="text/javascript" src="{% static 'get_hall_of_fame.js' %}"></script>
     <meta charset="UTF-8">
     <title>Hall Of Fame</title>
+    <style>
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            color: white;
+            text-decoration: none;
+        }
+        ul>li{
+            background-color: lightgrey;
+            border-style: solid;
+            border-color: black;
+
+            padding: 15px 32px;
+            font-size: 16px;
+            display: inline;
+        }
+        a{
+            font-family: Verdana, Arial, Helvetica, sans-serif;
+            color: black;
+            text-align: center;
+            text-decoration: none;
+            font-size: 16px;
+        }
+        nav>ins{
+            font-family: Verdana, Arial, Helvetica, sans-serif;
+            color: black;
+            text-align: center;
+            text-decoration: none;
+            font-size: 16px;
+            float: right;
+            margin-top: -30px;
+            border: none;
+        }
+        nav>p{
+            font-family: Verdana, Arial, Helvetica, sans-serif;
+            color: black;
+            text-align: center;
+            text-decoration: none;
+            font-size: 16px;
+            float: right;
+            margin-top: -10px;
+            border: none;
+        }
+        main{
+            background-color: white;
+            margin-top: 15px;
+            top:50px;
+            border-style: solid;
+            border-color: black;
+            padding: 5px;
+        }
+        #leaderboard{
+            background-color: lightgrey;
+            border-style: solid;
+            border-color: lightgrey;
+            padding: 15px 32px;
+            display: grid;
+            font-size: 16px;
+            max-width: 25%;
+        }
+        #leaderboard>li{
+            background-color: white;
+            border-style: solid;
+            border-color: black;
+            padding: 15px 30px;
+            margin-top: 5px;
+            font-family: Verdana, Arial, Helvetica, sans-serif;
+            color: black;
+            text-align: center;
+            font-size: 16px;
+        }
+        #rectangle-1{
+            position:fixed;
+            top:300px;
+            right: 3%;
+            width:20%;
+            height:250px;
+            background:lightgrey;
+            border-style: solid;
+            border-color: black;
+            text-align:center;
+            line-height: 250px;
+            font-size:100px;
+            font-family: Verdana, Arial, Helvetica, sans-serif;
+        }
+        #rectangle-2{
+            position:fixed;
+            top:200px;
+            right: 25%;
+            width:20%;
+            height:350px;
+            background:lightgrey;
+            border-style: solid;
+            border-color: black;
+            text-align:center;
+            line-height: 350px;
+            font-size:100px;
+            font-family: Verdana, Arial, Helvetica, sans-serif;
+        }
+        #rectangle-3{
+            position:fixed;
+            top:400px;
+            right: 47%;
+            width: 20%;
+            height:150px;
+            background:lightgrey;
+            border-style: solid;
+            border-color: black;
+            text-align:center;
+            line-height: 150px;
+            font-size:100px;
+            font-family: Verdana, Arial, Helvetica, sans-serif;
+        }
+        #rectangle-4{
+            position:fixed;
+            top:300px;
+            right: 47%;
+            width: 20%;
+            height:20px;
+            background:white;
+            text-align:center;
+            line-height: 150px;
+            font-size:30px;
+            font-family: Verdana, Arial, Helvetica, sans-serif;
+        }
+        #rectangle-5{
+            position:fixed;
+            top:100px;
+            right: 25%;
+            width:20%;
+            height:20px;
+            background:white;
+            text-align:center;
+            line-height: 150px;
+            font-size:30px;
+            font-family: Verdana, Arial, Helvetica, sans-serif;
+        }
+        #rectangle-6{
+            position:fixed;
+            top:150px;
+            right: 3%;
+            width:20%;
+            height:20px;
+            background:white;
+            text-align:center;
+            line-height: 250px;
+            font-size:30px;
+            font-family: Verdana, Arial, Helvetica, sans-serif;
+        }
+    </style>
 </head>
 <body>
 <header>
     <nav>
         <ul>
             <li><a href="halloffame.html">Hall of Fame</a></li>
-            <li><a href="">My Quizes</a></li>
+            <li><a href="">My Quizzes</a></li>
             <li><a href="">Review</a></li>
             <li><a href="">Solve</a></li>
         </ul>
-        <p>Welcome {{ user.get_username }}</p>
+        <ins>Welcome {{ user.get_username }}</ins>
+        <p id ="user_place">#{{user_place}}</p>
     </nav>
 </header>
 <main>
     <div id="root"></div>
-    <h1>Top 10</h1>
     <ol id = "leaderboard">
+    {% for nome,nr_resp in users%}
+        <li><h2>{{nome}} {{nr_resp}}</h2></li>
+    {% endfor %}
     </ol>
-    <div id = "user_place">
+    <div id = "top3">
+        <div id="rectangle-1">2</div>
+        <div id="rectangle-2">1</div>
+        <div id="rectangle-3">3</div>
+        <div id="rectangle-4">{{top3}}</div>
+        <div id="rectangle-5">{{top1}}</div>
+        <div id="rectangle-6">{{top2}}</div>
+        <div class="container">
+            <div class="list"></div>
+            <div class="list"></div>
+            <div class="list"></div>
+            <div class="list"></div>
+            <div class="list"></div>
+            <div class="list"></div>
+            <div class="list"></div>
+            <div class="list"></div>
+            <div class="list"></div>
+            <div class="list"></div>
+        </div>
     </div>
 </main>
-
 </body>
 </html>

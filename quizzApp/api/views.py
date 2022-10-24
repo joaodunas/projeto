@@ -8,45 +8,7 @@ from django.contrib.auth import authenticate, login
 import json
 from django.contrib.auth import authenticate
 
-@api_view(['GET'])
-def get_top_users(request):
 
-
-    if request.user.is_authenticated:
-        #Request users from database ordered by number of correct answers
-        top = Users.objects.order_by('nr_respostas_corretas').reverse().values('id','nr_respostas_corretas','nome')
-        top_ids = [user['id'] for user in top]
-
-        #Get Top 10 LeaderBoard
-        ret= {}
-
-        #Check if there are 10 users or more
-        if (l := len(top)) < 10:
-            for object,place in zip(top,range(1,l+1)):
-                ret[place] = ret[place] = { "nr_respostas_corretas": object['nr_respostas_corretas'], "nome": object['nome']}
-
-        else:
-            #Iterete over the leaderboard top and save to a dictionary
-            for object,place in zip(top,range(1,11)):
-                ret[place] = { "nr_respostas_corretas": object['nr_respostas_corretas'], "nome": object['nome']}
-
-
-        #Get user place in the leaderboard
-        if (id_us := request.user.id) != None:
-            print(id_us)
-            ret['user_place'] =  { "nr_respostas_corretas": object['nr_respostas_corretas'], "nome": request.user.username, 'place': top_ids.index(id_us) + 1}
-
-        else:
-            print("AUTH ERRORR!!!!!!")
-
-        response = Response(ret)
-
-    #USER NOT LOGGED IN, REDIRECT
-    else:
-        response = Response("AUTH ERROR")
-        print("not login")
-
-    return response
 
 @api_view(['POST'])
 @permission_classes([AllowAny]) 
